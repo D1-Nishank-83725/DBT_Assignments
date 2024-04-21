@@ -1,0 +1,55 @@
+SQL Exercise 6
+
+1. Display all the Suppliers with the same Status as the supplier, ‘CLARK’.
+Ans:
+D1_83725_NISHANK>SELECT * FROM S WHERE STATUS = (SELECT STATUS FROM S WHERE SNAME = 'CLARK');
+
+
+
+2. Display all the Employees in the same department as the employee ‘MILLER’.
+Ans:
+
+
+
+3. Display all the Parts which have more Weight than all the Red parts.
+Ans:
+D1_83725_NISHANK>SELECT * FROM P WHERE WEIGHT > ALL (SELECT WEIGHT FROM P WHERE COLOR = 'RED');
+
+
+
+4. Display all the Projects going on in the same city as the project ‘TAPE’.
+Ans:
+D1_83725_NISHANK>SELECT * FROM J WHERE CITY = (SELECT CITY FROM J WHERE JNAME = 'TAPE');
+
+
+
+5. Display all the Parts with Weight less than all the Green parts.
+Ans:
+D1_83725_NISHANK>SELECT * FROM P WHERE WEIGHT < ALL (SELECT WEIGHT FROM P WHERE COLOR = 'GREEN');
+
+
+
+6. Display the name of the Supplier who has sold the maximum Quantity (in one sale).
+Ans:
+D1_83725_NISHANK>SELECT SNAME FROM S WHERE `S#` IN (SELECT `S#` FROM SP WHERE QTY = (SELECT MAX(QTY) FROM SP));
+
+
+
+7. Display the name of the Employee with the minimum Salary.
+Ans:
+D1_83725_NISHANK>SELECT * FROM SEMP WHERE BASIC = (SELECT MIN(BASIC) FROM SEMP);
+
+
+
+8. Display the name of the Supplier who has sold the maximum overall Quantity (sum of Sales).
+Ans:
+D1_83725_NISHANK>SELECT SNAME FROM S WHERE `S#` = (SELECT `S#` FROM SP GROUP BY `S#` HAVING SUM(QTY) = (SELECT MAX(SUM_QTY) FROM (SELECT SUM(QTY) SUM_QTY FROM SP GROUP BY `S#`) MAX_SUM_QTY));
+
+
+
+
+9. Display the name of the Department with the maximum number of Employees. 
+Ans:
+D1_83725_NISHANK>SELECT DEPTNAME FROM SDEPT WHERE DEPTNO = (SELECT DEPTNO FROM SEMP GROUP BY DEPTNO HAVING COUNT(DEPTNO) = (SELECT MAX(EMP_COUNT) FROM (SELECT COUNT(DEPTNO) "EMP_COUNT" FROM SEMP GROUP BY DEPTNO) MAX_EMP_COUNT));
+
+

@@ -1,0 +1,2522 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MONGO DB Commands:
+
+
+
+
+1) sortByCount = db.emp.aggregate([{ $sortByCount: "$age"}]);
+
+
+2) db.emp.find({},{key:value})
+
+
+3) db.emp.update({},{$set:{}})
+
+
+4) deb.emp.deleteMany({});
+
+5) db.student.find().sort({age:1} = Ascending
+
+6) db.student.find().sort({age:-1}) = descending
+
+7) db.student.count({age:{$gt:18}}) = Count the Students whose age is greater than 18
+
+8) db.student.countDocuments({age:{$gt:18}}) = Count documents whose age is greater than 18
+
+9) db.gfg.find({"content":/c/i}).limit(2) = limit
+
+10) distinct = db.student.distinct("name") -> Find distinct elements
+
+
+
+
+
+
+
+
+
+
+
+SQL - SQLPL Commands
+
+
+
+
+
+show tables;
+
+
+mysql -u root -p
+
+
+create user D5_Ved_83794@localhost identified by 123456;
+
+
+------------------------------------------------------------------------------------------------------------
+EXERCISE 1
+------------------------------------------------------------------------------------------------------------
+
+
+
+Assignment 2 – D5_Vedant_83794               Date –20/03/2024
+
+
+-----------------------------------------------------------------------------------------------------------
+
+D5_Ved_83794>show databases;
++--------------------+
+| Database           |
++--------------------+
+| Exercise1          |
+| information_schema |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>use Exercise1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+D5_Ved_83794>show tables;
++---------------------+
+| Tables_in_Exercise1 |
++---------------------+
+| PARTS               |
+| PROJECTS            |
+| SDEPT               |
+| SEMP                |
+| SPJ                 |
+| SUPPLIER            |
++---------------------+
+6 rows in set (0.00 sec)
+
+D5_Ved_83794>select * from SUPPLIER;
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S2   | AKS   | YES    | LATUR  |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>select s# , Sname from SUPPLIER;
+    -> SELECT S# , SNAME FROM SUPPLIER;
+    -> SELECT SNAME FROM SUPPLIER;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT S
+SELECT SNAME FROM SUPPLIER' at line 2
+D5_Ved_83794>^C
+D5_Ved_83794>SELECT SNAME FROM SUPPLIER;
++-------+
+| SNAME |
++-------+
+| VED   |
+| AKS   |
+| VIN   |
++-------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT S# FROM SUPPLIER;
+    -> ^C
+D5_Ved_83794>SELECT `S#` FROM SUPPLIER;
++------+
+| S#   |
++------+
+| S1   |
+| S2   |
+| S3   |
++------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT `S#` , SNAME FROM SUPPLIER;
++------+-------+
+| S#   | SNAME |
++------+-------+
+| S1   | VED   |
+| S2   | AKS   |
+| S3   | VIN   |
++------+-------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SHOW TABLES;
++---------------------+
+| Tables_in_Exercise1 |
++---------------------+
+| PARTS               |
+| PROJECTS            |
+| SDEPT               |
+| SEMP                |
+| SPJ                 |
+| SUPPLIER            |
++---------------------+
+6 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM PARTS;
++------+---------+-------+--------+--------+
+| P#   | PNAME   | COLOR | WEIGHT | CITY   |
++------+---------+-------+--------+--------+
+| P1   | SCREWS  | BROWN |     10 | PUNE   |
+| P2   | BEARING | BLACK |     15 | LATUR  |
+| P3   | GEARS   | WHITE |      5 | NANDED |
++------+---------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS WHERE CITY=LATUR;
+ERROR 1054 (42S22): Unknown column 'LATUR' in 'where clause'
+D5_Ved_83794>SELECT PNAME FROM PARTS;
++---------+
+| PNAME   |
++---------+
+| SCREWS  |
+| BEARING |
+| GEARS   |
++---------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS;
++---------+-------+
+| PNAME   | COLOR |
++---------+-------+
+| SCREWS  | BROWN |
+| BEARING | BLACK |
+| GEARS   | WHITE |
++---------+-------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS WHERE CITY=NANDED;
+ERROR 1054 (42S22): Unknown column 'NANDED' in 'where clause'
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS WHERE CITY='NANDED';
++-------+-------+
+| PNAME | COLOR |
++-------+-------+
+| GEARS | WHITE |
++-------+-------+
+1 row in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIERS;
+ERROR 1146 (42S02): Table 'Exercise1.SUPPLIERS' doesn't exist
+D5_Ved_83794>SELECT * FROM SUPPLIER;
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S2   | AKS   | YES    | LATUR  |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE CITY='LATUR';
++------+-------+--------+-------+
+| S#   | SNAME | STATUS | CITY  |
++------+-------+--------+-------+
+| S2   | AKS   | YES    | LATUR |
++------+-------+--------+-------+
+1 row in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE CITY=PUNE OR CITY=NANDED;
+ERROR 1054 (42S22): Unknown column 'PUNE' in 'where clause'
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE CITY='PUNE' OR CITY='NANDED';
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+2 rows in set (0.01 sec)
+
+D5_Ved_83794>SELECT * FROM PROJECTS;
++------+----------+--------+
+| J#   | JNAME    | CITY   |
++------+----------+--------+
+| J1   | BUILDING | PUNE   |
+| J2   | SHOP     | LATUR  |
+| J3   | HOME     | NANDED |
++------+----------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM PARTS;
++------+---------+-------+--------+--------+
+| P#   | PNAME   | COLOR | WEIGHT | CITY   |
++------+---------+-------+--------+--------+
+| P1   | SCREWS  | BROWN |     10 | PUNE   |
+| P2   | BEARING | BLACK |     15 | LATUR  |
+| P3   | GEARS   | WHITE |      5 | NANDED |
++------+---------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM PARTS WHERE WEIGHT BETWEEN 10 AND 15;
++------+---------+-------+--------+-------+
+| P#   | PNAME   | COLOR | WEIGHT | CITY  |
++------+---------+-------+--------+-------+
+| P1   | SCREWS  | BROWN |     10 | PUNE  |
+| P2   | BEARING | BLACK |     15 | LATUR |
++------+---------+-------+--------+-------+
+2 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER;
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S2   | AKS   | YES    | LATUR  |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE STATUS=YES;
+ERROR 1054 (42S22): Unknown column 'YES' in 'where clause'
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE STATUS='YES';
++------+-------+--------+-------+
+| S#   | SNAME | STATUS | CITY  |
++------+-------+--------+-------+
+| S1   | VED   | YES    | PUNE  |
+| S2   | AKS   | YES    | LATUR |
++------+-------+--------+-------+
+2 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT CITY FROM SUPPLIER;
++--------+
+| CITY   |
++--------+
+| PUNE   |
+| LATUR  |
+| NANDED |
++--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT WEIGHT,WEIGHT/1000,WEIGHT*1000 FROM PARTS;
++--------+-------------+-------------+
+| WEIGHT | WEIGHT/1000 | WEIGHT*1000 |
++--------+-------------+-------------+
+|     10 |        0.01 |       10000 |
+|     15 |       0.015 |       15000 |
+|      5 |       0.005 |        5000 |
++--------+-------------+-------------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT WEIGHT,WEIGHT/1000 MILLIGRAM ,WEIGHT*1000 KILOGRAM FROM PARTS;
++--------+-----------+----------+
+| WEIGHT | MILLIGRAM | KILOGRAM |
++--------+-----------+----------+
+|     10 |      0.01 |    10000 |
+|     15 |     0.015 |    15000 |
+|      5 |     0.005 |     5000 |
++--------+-----------+----------+
+3 rows in set (0.00 sec)
+
+
+--------------------------------------------------------------------------------------------------------
+EXERCISE 2
+--------------------------------------------------------------------------------------------------------
+
+
+D5_Ved_83794>show databases;
++--------------------+
+| Database           |
++--------------------+
+| Exercise1          |
+| information_schema |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>use Exercise1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+D5_Ved_83794>show tables;
++---------------------+
+| Tables_in_Exercise1 |
++---------------------+
+| PARTS               |
+| PROJECTS            |
+| SDEPT               |
+| SEMP                |
+| SPJ                 |
+| SUPPLIER            |
++---------------------+
+6 rows in set (0.00 sec)
+
+D5_Ved_83794>select * from SUPPLIER;
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S2   | AKS   | YES    | LATUR  |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>select s# , Sname from SUPPLIER;
+    -> SELECT S# , SNAME FROM SUPPLIER;
+    -> SELECT SNAME FROM SUPPLIER;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT S
+SELECT SNAME FROM SUPPLIER' at line 2
+D5_Ved_83794>^C
+D5_Ved_83794>SELECT SNAME FROM SUPPLIER;
++-------+
+| SNAME |
++-------+
+| VED   |
+| AKS   |
+| VIN   |
++-------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT S# FROM SUPPLIER;
+    -> ^C
+D5_Ved_83794>SELECT `S#` FROM SUPPLIER;
++------+
+| S#   |
++------+
+| S1   |
+| S2   |
+| S3   |
++------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT `S#` , SNAME FROM SUPPLIER;
++------+-------+
+| S#   | SNAME |
++------+-------+
+| S1   | VED   |
+| S2   | AKS   |
+| S3   | VIN   |
++------+-------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SHOW TABLES;
++---------------------+
+| Tables_in_Exercise1 |
++---------------------+
+| PARTS               |
+| PROJECTS            |
+| SDEPT               |
+| SEMP                |
+| SPJ                 |
+| SUPPLIER            |
++---------------------+
+6 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM PARTS;
++------+---------+-------+--------+--------+
+| P#   | PNAME   | COLOR | WEIGHT | CITY   |
++------+---------+-------+--------+--------+
+| P1   | SCREWS  | BROWN |     10 | PUNE   |
+| P2   | BEARING | BLACK |     15 | LATUR  |
+| P3   | GEARS   | WHITE |      5 | NANDED |
++------+---------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS WHERE CITY=LATUR;
+ERROR 1054 (42S22): Unknown column 'LATUR' in 'where clause'
+D5_Ved_83794>SELECT PNAME FROM PARTS;
++---------+
+| PNAME   |
++---------+
+| SCREWS  |
+| BEARING |
+| GEARS   |
++---------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS;
++---------+-------+
+| PNAME   | COLOR |
++---------+-------+
+| SCREWS  | BROWN |
+| BEARING | BLACK |
+| GEARS   | WHITE |
++---------+-------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS WHERE CITY=NANDED;
+ERROR 1054 (42S22): Unknown column 'NANDED' in 'where clause'
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS WHERE CITY='NANDED';
++-------+-------+
+| PNAME | COLOR |
++-------+-------+
+| GEARS | WHITE |
++-------+-------+
+1 row in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIERS;
+ERROR 1146 (42S02): Table 'Exercise1.SUPPLIERS' doesn't exist
+D5_Ved_83794>SELECT * FROM SUPPLIER;
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S2   | AKS   | YES    | LATUR  |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE CITY='LATUR';
++------+-------+--------+-------+
+| S#   | SNAME | STATUS | CITY  |
++------+-------+--------+-------+
+| S2   | AKS   | YES    | LATUR |
++------+-------+--------+-------+
+1 row in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE CITY=PUNE OR CITY=NANDED;
+ERROR 1054 (42S22): Unknown column 'PUNE' in 'where clause'
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE CITY='PUNE' OR CITY='NANDED';
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+2 rows in set (0.01 sec)
+
+D5_Ved_83794>SELECT * FROM PROJECTS;
++------+----------+--------+
+| J#   | JNAME    | CITY   |
++------+----------+--------+
+| J1   | BUILDING | PUNE   |
+| J2   | SHOP     | LATUR  |
+| J3   | HOME     | NANDED |
++------+----------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM PARTS;
++------+---------+-------+--------+--------+
+| P#   | PNAME   | COLOR | WEIGHT | CITY   |
++------+---------+-------+--------+--------+
+| P1   | SCREWS  | BROWN |     10 | PUNE   |
+| P2   | BEARING | BLACK |     15 | LATUR  |
+| P3   | GEARS   | WHITE |      5 | NANDED |
++------+---------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM PARTS WHERE WEIGHT BETWEEN 10 AND 15;
++------+---------+-------+--------+-------+
+| P#   | PNAME   | COLOR | WEIGHT | CITY  |
++------+---------+-------+--------+-------+
+| P1   | SCREWS  | BROWN |     10 | PUNE  |
+| P2   | BEARING | BLACK |     15 | LATUR |
++------+---------+-------+--------+-------+
+2 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER;
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S2   | AKS   | YES    | LATUR  |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE STATUS=YES;
+ERROR 1054 (42S22): Unknown column 'YES' in 'where clause'
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE STATUS='YES';
++------+-------+--------+-------+
+| S#   | SNAME | STATUS | CITY  |
++------+-------+--------+-------+
+| S1   | VED   | YES    | PUNE  |
+| S2   | AKS   | YES    | LATUR |
++------+-------+--------+-------+
+2 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT CITY FROM SUPPLIER;
++--------+
+| CITY   |
++--------+
+| PUNE   |
+| LATUR  |
+| NANDED |
++--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT WEIGHT,WEIGHT/1000,WEIGHT*1000 FROM PARTS;
++--------+-------------+-------------+
+| WEIGHT | WEIGHT/1000 | WEIGHT*1000 |
++--------+-------------+-------------+
+|     10 |        0.01 |       10000 |
+|     15 |       0.015 |       15000 |
+|      5 |       0.005 |        5000 |
++--------+-------------+-------------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT WEIGHT,WEIGHT/1000 MILLIGRAM ,WEIGHT*1000 KILOGRAM FROM PARTS;
++--------+-----------+----------+
+| WEIGHT | MILLIGRAM | KILOGRAM |
++--------+-----------+----------+
+|     10 |      0.01 |    10000 |
+|     15 |     0.015 |    15000 |
+|      5 |     0.005 |     5000 |
++--------+-----------+----------+
+3 rows in set (0.00 sec)
+
+
+--------------------------------------------------------------------------------------------------------
+ASSIGNMENT 1
+--------------------------------------------------------------------------------------------------------
+
+D5_Ved_83794>CREATE TABLE CUSTOMERS(
+    -> CNUMINT(4),
+    -> CNAMEVARCHAR(10),
+    -> CITY VARCHAR(10),
+    -> RATINGINT(4),
+    -> Snum INT(4),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(4),
+CNAMEVARCHAR(10),
+CITY VARCHAR(10),
+RATINGINT(4),
+Snum INT(4),
+FOREIGN KEY ' at line 2
+D5_Ved_83794>CREATE TABLE CUSTOMERS( CNUMINT(4), CNAMEVARCHAR(10), CITY VARCHAR(10), RATINGINT(4), Snum INT(4), FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum) );^C
+D5_Ved_83794>CREATE TABLE CUSTOMERS(
+    -> CNUMINT(4),
+    -> CNAMEVARCHAR(10),
+    -> CITY VARCHAR(10),
+    -> RATINGINT(4),
+    -> Snum INT(4),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );^C
+D5_Ved_83794>CREATE TABLE CUSTOMERS(
+    -> CNUM INT(4),
+    -> CNAME VARCHAR(10),
+    -> CITY VARCHAR(10),
+    -> RATING INT(4),
+    -> Snum INT(4),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );
+ERROR 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'CUSTOMERS_ibfk_1' in the referenced table 'SALESPEOPLE'
+D5_Ved_83794>DROP ^C
+D5_Ved_83794>DROP TABLE SALESPEOPLE;
+Query OK, 0 rows affected (0.01 sec)
+
+D5_Ved_83794>SHOW TABLES;
++---------------------+
+| Tables_in_Exercise1 |
++---------------------+
+| PARTS               |
+| PROJECTS            |
+| SDEPT               |
+| SEMP                |
+| SPJ                 |
+| SUPPLIER            |
++---------------------+
+6 rows in set (0.01 sec)
+
+D5_Ved_83794>CREATE TABLE SALESPEOPLE (
+    -> Snum INT(4),
+    -> Sname VARCHAR(10),
+    -> City  VARCHAR(10),
+    -> Comm FLOAT(3.2),
+    -> PRIMARY KEY(Snum)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+D5_Ved_83794>CREATE TABLE CUSTOMERS(
+    -> CNUM INT(4),
+    -> CNAME VARCHAR(10),
+    -> CITY VARCHAR(10),
+    -> RATING INT(4),
+    -> Snum INT(4),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );
+Query OK, 0 rows affected, 3 warnings (0.03 sec)
+
+D5_Ved_83794>DROP TABLE CREATE TABLE CUSTOMERS(
+    -> CNUM INT(4),
+    -> CNAME VARCHAR(10),
+    -> CITY VARCHAR(10),
+    -> RATING INT(4),
+    -> Snum INT(4),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );^C
+D5_Ved_83794>DROP TABLE CUSTOMERS;
+Query OK, 0 rows affected (0.02 sec)
+
+D5_Ved_83794>CREATE TABLE CUSTOMERS(
+    -> CNUM INT(4),
+    -> CNAME VARCHAR(10),
+    -> CITY VARCHAR(10),
+    -> RATING INT(4),
+    -> Snum INT(4),
+    -> PRIMARY KEY(CNUM),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );
+Query OK, 0 rows affected, 3 warnings (0.02 sec)
+
+D5_Ved_83794>CREATE TABLE ORDERS(
+    -> Onum INT(4),
+    -> Amt FLOAT(7.2),
+    -> Odate DATE,
+    -> Cnum INT(4),
+    -> Snum INT(4),
+    -> FOREIGN KEY (CNUM) REFERENCES CUSTOMERS(CNUM),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );
+Query OK, 0 rows affected, 3 warnings (0.04 sec)
+
+D5_Ved_83794>INSERT INTO SALESPEOPLE(Snum,Sname,City,Comm,PRIMARY) VALUES
+    -> ('1001','PEEL','LONDON', 0.12),
+    -> ('1002','SERRES','SAN JOSE', 0.13),
+    -> ('1004','MOTIKA','LONDON',0.11),
+    -> ('1007','RIFKIN','BARCELONA',0.15),
+    -> ('1003','AXELROD','NEW YORK', 0.10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'PRIMARY) VALUES
+('1001','PEEL','LONDON', 0.12),
+('1002','SERRES','SAN JOSE', 0.' at line 1
+D5_Ved_83794>)INSERT INTO SALESPEOPLE(Snum,Sname,City,Comm,PRIMARY) VALUES
+    -> ('1001','PEEL','LONDON', 0.12),
+    -> ('1002','SERRES','SAN JOSE', 0.13),
+    -> ('1004','MOTIKA','LONDON',0.11),
+    -> ('1007','RIFKIN','BARCELONA',0.15),
+    -> ('1003','AXELROD','NEW YORK', 0.10);^C
+D5_Ved_83794>INSERT INTO SALESPEOPLE(Snum,Sname,City,Comm) VALUES
+    -> ('1001','PEEL','LONDON', 0.12),
+    -> ('1002','SERRES','SAN JOSE', 0.13),
+    -> ('1004','MOTIKA','LONDON',0.11),
+    -> ('1007','RIFKIN','BARCELONA',0.15),
+    -> ('1003','AXELROD','NEW YORK', 0.10);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+D5_Ved_83794>INSERT INTO CUSTOMERS(CNUM,CNAME,CITY,RATING,Snum) VALUES
+    -> (2001,'Hoffman','LONDON',100,1001),
+    -> (2002,'Giovanni','Rome',200,1003),
+    -> (2003,'Liu','San Jose' , 200 ,1002),
+    -> (2004 ,'GRASS','Berlin',300,1002),
+    -> (2006,'Clemens','LONDON',100,1001),
+    -> (2008,'Cisneros','SAN JOSE',300,1007),
+    -> (2007,'Pereira','ROME',100,1004);
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+D5_Ved_83794>INSERT INTO ORDERS(Onum,Amt,Odate,Cnum,Snum) VALUES
+    -> (3001,18.69,'1990-10-03',2008,1007),
+    -> (3003,767.19,'1990-10-03',2001,1001),
+    -> (3002,1900.10,'1990-10-03',2007,1004),
+    -> (3005,5160.45,'1990-10-03',2003,1002),
+    -> (3006,1098.16,'1990-10-03',2008,1007),
+    -> (3009,1713.23.'1990-10-04',2002,1003),
+    -> (3007,75.75,'1990-10-04',2004,1002),
+    -> (3008,4723.00,'1990-10-05',2006,1001),
+    -> (3010,1309.95,'1990-10-06',2004,1002),
+    -> (3011,9891.88,'1990-10-06',2006,1001);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.'1990-10-04',2002,1003),
+(3007,75.75,'1990-10-04',2004,1002),
+(3008,4723.00,'19' at line 7
+D5_Ved_83794>INSERT INTO ORDERS(Onum,Amt,Odate,Cnum,Snum) VALUES
+    -> (3001,18.69,'1990-10-03',2008,1007),
+    -> (3003,767.19,'1990-10-03',2001,1001),
+    -> (3002,1900.10,'1990-10-03',2007,1004),
+    -> (3005,5160.45,'1990-10-03',2003,1002),
+    -> (3006,1098.16,'1990-10-03',2008,1007),
+    -> (3009,1713.23,'1990-10-04',2002,1003),
+    -> (3007,75.75,'1990-10-04',2004,1002),
+    -> (3008,4723.00,'1990-10-05',2006,1001),
+    -> (3010,1309.95,'1990-10-06',2004,1002),
+    -> (3011,9891.88,'1990-10-06',2006,1001);
+Query OK, 10 rows affected (0.02 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+D5_Ved_83794>SELECT * FROM ORDERS;
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Cnum | Snum |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1990-10-03 | 2008 | 1007 |
+| 3003 |  767.19 | 1990-10-03 | 2001 | 1001 |
+| 3002 |  1900.1 | 1990-10-03 | 2007 | 1004 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1990-10-04 | 2002 | 1003 |
+| 3007 |   75.75 | 1990-10-04 | 2004 | 1002 |
+| 3008 |    4723 | 1990-10-05 | 2006 | 1001 |
+| 3010 | 1309.95 | 1990-10-06 | 2004 | 1002 |
+| 3011 | 9891.88 | 1990-10-06 | 2006 | 1001 |
++------+---------+------------+------+------+
+10 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SALESPEOPLE;
++------+---------+-----------+------+
+| Snum | Sname   | City      | Comm |
++------+---------+-----------+------+
+| 1001 | PEEL    | LONDON    | 0.12 |
+| 1002 | SERRES  | SAN JOSE  | 0.13 |
+| 1003 | AXELROD | NEW YORK  |  0.1 |
+| 1004 | MOTIKA  | LONDON    | 0.11 |
+| 1007 | RIFKIN  | BARCELONA | 0.15 |
++------+---------+-----------+------+
+5 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM CUSTOMERS;
++------+----------+----------+--------+------+
+| CNUM | CNAME    | CITY     | RATING | Snum |
++------+----------+----------+--------+------+
+| 2001 | Hoffman  | LONDON   |    100 | 1001 |
+| 2002 | Giovanni | Rome     |    200 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | GRASS    | Berlin   |    300 | 1002 |
+| 2006 | Clemens  | LONDON   |    100 | 1001 |
+| 2007 | Pereira  | ROME     |    100 | 1004 |
+| 2008 | Cisneros | SAN JOSE |    300 | 1007 |
++------+----------+----------+--------+------+
+7 rows in set (0.00 sec)
+
+
+
+--------------------------------------------------------------------------------------------------------
+ASSIGNMENT 2
+--------------------------------------------------------------------------------------------------------
+
+
+1) Which field of the Customers table is the primary key?
+=> IN CUSTOMER TABLE cnum is the primary key.
+
+
+2) What is the 4th column of the Customers table?
+=> 4th column of customers table is Raiting.
+
+3) What is another word for row?For column?
+=> for row another word is Tuple & for column is Attribute.
+
+
+4) Why isn’t it possible to see the first five rows of a table?
+=>
+
+
+
+--------------------------------------------------------------------------------------------------------
+ASSIGNMENT 5
+--------------------------------------------------------------------------------------------------------
+
+1) SELECT * FROM ORDERS WHERE AMT>1000;
+
+2) SELECT Sname,City FROM SALESPEOPLE WHERE CITY='LONDON' AND COMM>0.10;
+
+3) SELECT * FROM CUSTOMERS WHERE RATING>100 OR CITY='Rome' OR CITY='ROME';
+
+4)
+What will be the output from the following query?
+Select * from ORDERS
+where (Amt < 1000 OR
+NOT (Odate = ‘1990-10-03’
+AND Cnum > 2003));
+
+=> SELECT * FROM ORDERS WHERE (Amt < 1000 OR NOT (Odate='1990-10-03' AND Cnum>2003));
+
+
+The answer to above query is row which contains
+(3007,75.75,'1990-10-04',2004,1002);
+
+5)
+=> SELECT * FROM ORDERS WHERE NOT ((Odate = '1990-10-03' OR Snum>1006) AND Amt >= 1500);
+
+
+6) SELECT * FROM SALESPEOPLE WHERE Comm IN(.12,.14);
+
+------------------------------------------------------------------
+
+assignment 6
+
+1) SELECT * FROM ORDERS WHERE Odate BETWEEN '1990-10-03' AND '1990-10-04';
+
+2) SELECT * FROM
+
+
+3) SELECT * FROM CUSTOMERS WHERE CNAME >= 'A' AND CNAME<'G';
+
+
+4) SELECT * FROM CUSTOMERS WHERE CNAME LIKE 'C%';
+
+5) SELECT * FROM ORDERS WHERE Amt!=0 OR Amt=NULL;
+
+
+------------------------------------------------------------------
+
+assignment 4
+
+
+1) SELECT Onum,Amt,Odate FROM ORDERS;
+
+2) SELECT * CUSTOMERS WHERE Snum=1001;
+
+3) SELECT City,Sname,Snum,Comm FROM SALESPEOPLE;
+
+4) SELECT RATING,CNAME FROM CUSTOMERS WHERE CITY='SAN JOSE' OR CITY='San Jose';
+
+
+---------------------------------------------------------------------
+
+assignment 7
+
+select * FROM CUSTOMERS ;
+
+SELECT * FROM CUSTOMERS WHERE CNAME LIKE 'G%' LIMIT 1 ORDER BY CNAME;
+
+
+SELECT MAX(RAITING),DISTINCT CITY FROM CUSTOMERS GROUP BY CITY;
+ 
+SELECT COUNT(Onum)  WHERE SALESPEOPLE.Snum = ORDERS.Snum;
+
+---------------------------------------------------------------------
+
+assignment 8
+
+
+
+SELECT Onum,Snum,Amt*0.12 "COMM" FROM SALESPEOPLE,ORDERS WHERE SALESPEOPLE.Snum = ORDERS.Snum;
+
+
+SELECT * FROM CUSTOMERS ORDER BY CNAME DESC;
+
+SELECT DISTINCT Odate,CUSTOMERS.CITY FROM ORDERS,CUSTOMERS WHERE CUSTOMERS.Snum=ORDER.Snum ORDER BY Odate DESC;
+
+SELECT DISTINCT Odate,CUSTOMERS.CITY,SUM(Amt) "TOTAL BILL" FROM ORDERS,CUSTOMERS WHERE CUSTOMERS.Snum=ORDERS.Snum ORDER BY Odate DESC;
+
+---------------------------------------------------------------------
+
+assignment 9
+
+SELECT Onum,CUSTOMERS.CNAME FROM CUSTOMERS,ORDERS WHERE CUSTOMERS.Snum = ORDERS.Snum;
+
+
+SELECT SALESPEOPLE.Sname,CUSTOMERS.CNAME,ORDERS.Onum FROM ORDERS,CUSTOMERS,SALESPEOPLE WHERE SALESPEOPLE.Snum=CUSTOMERS.Snum AND CUSTOMERS.CNUM=ORDERS.Cnum;
+
+
+
+SELECT CUSTOMERS.CNAME,SALEPEOPLE.Sname,SALESPEOPLE.Comm "COMMISSION"  FROM SALESPEOPLE,ORDERS WHERE SALESPEOPLE.Snum=CUSTOMERS.Snum WHERE Comm>0.12;
+
+
+
+
+SELECT CUSTOMERS.CNAME,SALEPEOPLE.Sname,SALESPEOPLE.Comm AS "COMMISSION" FROM SALESPEOPLE,ORDERS WHERE SALESPEOPLE.Snum=CUSTOMERS.Snum WHERE COMMISSION>0.12;
+
+
+SELECT CNAME,Sname,Comm FROM SALESPEOPLE,ORDERS WHERE SALESPEOPLE.Snum=CUSTOMERS.Snum AND Comm>0.12;
+
+
+
+SELECT Amt+(Amt*Comm) AS "AMOUNT" FROM SALESPEOPLE,ORDERS,CUSTOMERS WHERE SALESPEOPLE.Snum=ORDERS.Onum AND CUSTOMERS.CNUM=ORDERS.Cnum AND RATING>100;
+
+SELECT COUNT(Onum)/COUNT(*) FROM ORDERS;
+
+
+
+
+SELECT DISTINCT SALESPEOPLE.Sname AS "AMOUNT",Amt+(Amt*Comm) FROM SALESPEOPLE,ORDERS,CUSTOMERS WHERE SALESPEOPLE.Snum=ORDERS.Snum AND CUSTOMERS.CNUM=ORDERS.Cnum AND RATING>100;
+
+
+SELECT CNAME,CITY FROM CUSTOMERS WHERE RATING = (SELECT RATING FROM
+CUSTOMERS WHERE CNUM=2001);
+
+SELECT C1.CNAME,C1.CITY FROM CUSTOMERS C1 , CUSTOMERS C2 WHERE C1.RATING = C2.RATING AND C1.CNAME=Hoffman;
+
+SELECT * FROM ORDERS,CUSTOMERS WHERE ORDERS.Cnum = CUSTOMERS.CNUM;
+
+
+SELECT * FROM ORDERS WHERE
+
+SELECT * FROM CUSTOMERS WHERE CNAME='Cisneros';
+
+
+SELECT MAX(Amt) FROM ORDERS;
+
+
+SELECT CNAME FROM CUSTOMERS,SALESPEOPLE WHERE SALESPEOPLE.SNUM = ORDERS.SNUM AND RATING > SALESPEOPLE.;
+
+SELECT RATING FROM CUSTOMERS,SALESPEOPLE WHERE SALESPEOPLE.SNUM=CUSTOMERS.SNUM AND SNAME='SERRES';
+
+SELECT * FROM CUSTOMERS,SALESPEOPLE WHERE RATING ANY(SELECT RATING FROM CUSTOMERS,SALESPEOPLE WHERE SALESPEOPLE.SNUM=CUSTOMERS.SNUM AND SNAME='SERRES');
+
+SELECT * FROM CUSTOMERS,SALESPEOPLE WHERE RATING ANY(SELECT RATING FROM CUSTOMERS,SALESPEOPLE WHERE SALESPEOPLE.SNUM=CUSTOMERS.Snum AND SNAME='SERRES');
+
+
+
+SELECT COUNT(Onum)/COUNT(*) FROM ORDERS;
+
+SELECT COUNT(ORDERS.CNUM) CO, CNAME FROM CUSTOMERS,ORDERS WHERE CUSTOMERS.CNUM = ORDERS.CNUM GROUP BY CNAME;
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+INTERVIEW
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+SELECT MAX(EMPNO) max FROM EMP2;
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ASSIGNMENT 12
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+SELECT Sname,CNAME,CUSTOMERS.CITY FROM SALESPEOPLE,CUSTOMERS WHERE  SALESPEOPLE.Snum = CUSTOMERS.Snum AND SALESPEOPLE.City != CUSTOMERS.CITY;
+
+
+SELECT Sname,CNAME,CUSTOMERS.CITY FROM SALESPEOPLE,CUSTOMERS WHERE SALESPEOPLE.Snum = CUSTOMERS.Snum AND CUSTOMERS.CITY =ALL (SELECT City FROM SALESPEOPLE  WHERE City );
+
+SELECT CUSTOMERS.CITY FROM CUSTOMERS,SALESPEOPLE WHERE
+
+SELECT Sname,CNAME,CUSTOMERS.CITY FROM SALESPEOPLE,CUSTOMERS WHERE SALESPEOPLE.City != ALL (SELECT CITY FROM CUSTOMERS);
+
+
+SERRES = BERLIN
+AXELROD ROME
+MOTIKA ROME
+RIFKIN SAN JOSE
+
+
+7
+
+7
+
+
+SELECT * FROM ORDERS WHERE Amt >ANY (SELECT ORDERS.Amt FROM ORDERS,CUSTOMERS WHERE CUSTOMERS.CNUM = ORDERS.Cnum AND CUSTOMERS.CITY = 'LONDON');
+
+SELECT * FROM ORDERS WHERE Amt >ANY (SELECT ORDERS.Amt FROM ORDERS,CUSTOMERS WHERE CUSTOMERS.CNUM = ORDERS.Cnum AND CUSTOMERS.CITY = 'LONDON');
+
+
+SELECT * FROM ORDERS WHERE Amt >
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ASSIGNMENT 13
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+SELECT CNAME,CITY,CONCAT("HIGH RATING: ",RATING) FROM CUSTOMERS WHERE RATING >= 200
+
+UNION
+
+SELECT CNAME,CITY,CONCAT("LOW RATING: ",RATING) FROM CUSTOMERS WHERE RATING < 200;
+
+
+// NO 2
+
+SELECT Sname Name,count(Snum) FROM SALESPEOPLE GROUP BY Sname
+
+UNION
+
+SELECT CNAME,COUNT(CNUM) FROM CUSTOMERS GROUP BY CNAME
+
+UNION
+
+SELECT * FROM ORDERS O1 ,ORDERS O2 WHERE O1.Onum = O2.Cnum AND O1.Onum=O2.Snum;
+
+// NO 3
+
+SELECT Snum FROM SALESPEOPLE WHERE City = 'SAN JOSE'
+
+UNION
+
+SELECT CNUM FROM CUSTOMERS WHERE CITY = 'SAN JOSE' OR CITY='San Jose'
+
+UNION
+
+SELECT Onum FROM ORDERS WHERE Odate='1990-10-03';
+
+
+
+//////////////////////////////////////////
+
+A ASSIGNMENT 14
+
+//////////////////////////////////////////
+
+
+
+SELECT Onum FROM ORDERS,CUSTOMERS WHERE ORDERS.Cnum=CUSTOMERS.CNUM AND ORDERS.CNUM = 2006;
+
+
+
+DELETE FROM ORDERS WHERE Onum = (SELECT Onum FROM ORDERS,CUSTOMERS WHERE ORDERS.Cnum=CUSTOMERS.CNUM AND ORDERS.CNUM = 2006);
+
+
+
+// NO2
+
+DELETE FROM ORDERS WHERE Cnum IN (SELECT Cnum FROM CUSTOMERS WHERE CNAME ='Clemens' );
+
+
+// NO 3
+
+SELECT CITY FROM CUSTOMERS WHERE CITY = 'ROME';
+
+UPDATE CUSTOMERS SET RATING = RATING+100 WHERE CITY = (SELECT CITY FROM CUSTOMERS WHERE CITY = 'ROME');
+
+UPDATE CUSTOMERS SET RATING = RATING+100 WHERE CITY = 'ROME';
+
+SELECT CNUM FROM CUSTOMERS WHERE CITY = 'ROME';
+
+
+
+
+// NO 4
+
+
+UPDATE ORDERS
+
+SELECT CNAME FROM CUSTOMERS C ,SALESPEOPLE S WHERE C.Snum = S.Snum AND Sname = 'SERRES';
+
+
+UPDATE CUSTOMERS SET Snum = 1004 WHERE Snum = (SELECT Snum FROM SALESPEOPLE WHERE Sname = 'SERRES');
+
+
+//////////////////////////////////////////
+
+A ASSIGNMENT 15
+
+//////////////////////////////////////////
+
+
+
+
+/// no 1
+
+
+
+SELECT Snum,COUNT(Snum) FROM CUSTOMERS GROUP BY Snum HAVING COUNT(Snum)>1;
+
+
+/// NO 2
+
+
+DELETE FROM CUSTOMERS WHERE
+
+SELECT CNAME,COUNT(O.Cnum) FROM CUSTOMERS C ,ORDERS O GROUP BY CNAME HAVING COUNT(O.Cnum)<1;
+
+
+
+
+
+
+SELECT CNAME FROM CUSTOMERS C ,ORDERS O WHERE C.CNUM = O.Cnum AND C.CNUM != Cnum;
+
+
+SELECT CNAME FROM CUSTOMERS C,ORDERS O WHERE C.CNUM
+!= O.Cnum;
+
+
+SELECT CNAME FROM CUSTOMERS C, ORDERS O WHERE C.CNUM = O.Cnum AND C.CNUM != O.Cnum;
+
+SELECT DISTINCT C.CNAME FROM CUSTOMERS C, ORDERS O WHERE C.CNUM != O.Cnum;
+
+
+
+
+SELECT CNAME FROM CUSTOMERS C, ORDERS O WHERE C.CNUM = O.Cnum AND C.CNUM NOT IN (O.Cnum);
+
+
+SELECT CNAME FROM CUSTOMERS WHERE CNUM = (SELECT O.Cnum FROM ORDERS O, CUSTOMERS C WHERE C.CNUM = O.Cnum AND  C.CNUM != O.Cnum);
+
+
+
+
+DELETE FROM CUSTOMERS WHERE
+CNUM NOT IN (SELECT Cnum FROM ORDERS);
+
+
+/// NO3
+
+
+
+
+SELECT COMM FROM SALESPEOPLE
+
+
+SELECT Amt FROM ORDERS O , SALESPEOPLE S WHERE S.Snum = O.Snum AND SUM(Amt)
+
+
+
+SELECT Snum , SUM(Amt) FROM ORDERS GROUP BY SNUM HAVING SUM(Amt) > 3000;
+ 
+
+
+
+SELECT Snum ,Sname ,City ,Comm+(Comm*0.2) "COMMISION" ,  FROM SALESPEOPLE WHERE Snum =  (SELECT Snum FROM ORDERS GROUP BY SNUM HAVING SUM(Amt) > 3000);
+
+
+//////////////////////////////////////////
+
+index
+
+//////////////////////////////////////////
+
+
+
+syntax for index
+
+create index index_name on table (columnname);
+
+composite index
+create index index_name on table (column_name1 , column_name2);
+
+
+create index index_name on table (col desc)
+
+create index index_name on table (col1 desc , col2 desc);
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+TO DROP INDEX
+
+drop index index_name on table;
+
+if you drop the table , then index are automatically droped
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+TO VIEW INDEXEX OF TABLE
+
+show indexex from table;
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+unique index
+
+create unique index_name on table (column);
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+primary key
+
+
+create table emp(
+empno char(4) primary key,
+ename char(10),
+roll int
+);
+
+create table emp(
+empno char(4),
+ename char(10),
+roll int,
+primary key (roll , empno)
+);
+
+constraints are of 2 types
+1- column level - 1 column
+2- table level - 2 or more column
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+TO DROP P.K
+
+alter table table_name drop primary key;
+alter table emp drop primary key;
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+TO ADD PK CONSTRAINTS AFTERWARDS  TO AN ALREADY EXISTING TABLE
+
+alter table table_name add primary key(deptno);
+alter table table_name add primary key(deptno,empno);
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+Not Null
+
+
+create table emp (
+ename char(15),
+eno int not null,
+sal float not null,
+deptno int
+);
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+foreign key
+
+create table dept (
+dept_no int primary key,
+dname varchar (15),
+loc varchar(10)
+);
+
+
+create table emp(
+empno char(4) primary key,
+ename varchar(25),
+sal float,
+deptno int,
+mgr char(4)
+
+constraint fk_emp_deptno foreign key (deptno) references dept(deptno),
+constraint fk_emp_mgr foreign key (mgr) references emp(empno)
+);
+
+
+
+//////////////////////////////////////////////////////////////////////////
+
+PL MYSQL
+
+create table tempp(
+fir int,
+sec char(15)
+);
+
+create procedure abc()
+begin
+insert into tempp values(1, 'inside abc');
+end;
+
+call abc();        // to call procedure
+
+select * from tempp    // to see output
+
+
+///////////////////////////////////////////////
+exercise 1
+
+
+
+
+/////////
+no 1
+/////////
+
+create table rect(
+length int,
+width int
+);
+
+create procedure abc()
+begin
+declare length int default 2;
+declare width int default 2;
+
+declare perimeter  = 2*(length+width);
+insert into rect values(2,2);
+end;
+
+call abc();
+
+select * from rect;
+
+///////////////////////////////////////////////////////////
+
+Whenever you have a join, along with DISTINCT, to make it work faster, use correlated sub-query (use the EXISTS
+operator)
+
+this is the exception when sub-query is faster than join
+
+select dname from dept where exists
+(select deptno from emp
+where dept.deptno = emp.deptno);
+
+
+/////////////////////////////////////////////
+
+union ->
+will combine the output of both the SELECTs and it will supress the duplicates
+
+
+/////////////////////////////////////////////////
+
+union all
+->
+will combine the output of both the SELECTs and the duplicates are not supressed
+
+///////////////////////////////////////////////////
+NOT SUPPORTED
+intersect
+->
+will return what is common in both the SELECTs and it will supress the duplicates
+
+///////////////////////////////////////////////////
+NOT SUPPORTED
+minus ->
+will return what is present in first SELECT and what is present in second SELECT and the
+duplicates are suppressed
+
+
+//////////////////////////////////////////////////////
+EXERCISE 1 PL SQL
+//////////////////////////////////////////////////////
+
+create table rect(
+res int
+);
+
+delimiter //
+create procedure abc()
+begin
+declare l int default 2;
+declare w int default 2;
+declare P int;
+set P = 2*(l+w);
+insert into rect values (P);
+end; //
+delimiter;
+
+delimiter //
+create procedure abc1()
+begin
+declare l int default 2;
+declare w int default 2;
+declare A int;
+set A = l*w;
+insert into rect values (A);
+end; //
+ 
+
+call abc();
+
+select * from rect;
+
+///////////////////////// no 2
+
+create table temperature(
+temp float
+);
+
+delimiter //
+create procedure abc ()
+begin
+declare c float default 37;
+declare f float default 98.6;
+set c = 45;
+set f = 108;
+insert into temperature values ((f-32)*5/9);
+insert into temperature values ((9/5)*c + 32);
+end; //
+
+delimiter;
+
+call abc();
+
+
+///////////////////////////////////  no3
+
+create table divisible(
+ans int,
+divisible char(4)
+);
+
+delimiter //
+create procedure div5(y int)
+begin
+declare x int default 5;
+
+declare ans int;
+declare divisible char(4);
+set ans = y/x;
+if (mod(ans,2) = 0) then
+insert into divisible values (ans,'yes');
+else
+insert into divisible values (ans,'No');
+end if;
+end; //
+
+delimiter ;
+
+
+
+
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+EXERCISE 2 PL SQL
+//////////////////////////////////////////////////////
+
+
+create table Exe2(
+num int
+);
+
+create table sh(
+status char(15)
+);
+
+delimiter //
+create procedure ran(x int)
+begin
+declare y;
+select num into y from Exe2;  
+if(x>=1 and ) then
+insert into sh('In Range');
+else
+insert into sh('Not In Range');
+end if;
+end; //
+
+delimiter ;
+
+call sh(4);
+
+
+//////////////////////////////////////////////////////////
+///  cursors example no 1
+
+
+create table empp(
+empno int ,
+enmae char(15),
+sal float(5),
+deptno int
+);
+
+insert into empp values
+(1,'a',5000,1),
+(2,'b',6000,1),
+(3,'c',7000,1),
+(4,'d',9000,2),
+(5,'e',8000,2);
+
+
+show tables;
+
+
+delimiter //
+create procedure ran()
+begin
+declare a int;
+declare b varchar(15);
+declare c int;
+declare d int;
+declare x int default 0;
+
+declare c1 cursor for select * from empp;
+open c1;
+
+while x<5 do
+fetch c1 into a,b,c,d;
+
+insert into temp values (a,b);
+set x=x+1;
+
+end while;
+
+close c1;
+
+end; //
+
+
+//////////////////////////////////////////////////////////
+///  cursors example no 1 chat gpt
+
+delimiter //
+
+create procedure ran()
+begin
+    declare a int;
+    declare b varchar(15);
+    declare c int;
+    declare d int;
+    declare x int default 0;
+   
+    declare c1 cursor for select * from empp;
+    open c1;
+   
+    while x < 5 do
+        fetch c1 into a, b, c, d;
+        insert into temp values (a, b);
+        set x = x + 1;
+    end while;
+   
+    close c1;
+end;
+//
+
+
+
+//////////////////////////////////////////////////////////
+///  cursors example no 2
+ using continue handler
+
+delimiter //
+create procedure cur2()
+begin
+declare a int ;
+declare b char(15);
+declare c int ;
+declare d int;
+
+declare y int default 0;
+
+declare c1 cursor for select * from empp;
+declare continue handler for not found set y=1;
+
+open c1;
+cursor_c1_loop:loop
+fetch c1 into a,b,c,d;
+if y=1 then
+leave cursor_c1_loop;
+end if;
+insert into temp values(a,b);
+end loop cursor_c1_loop;
+close c1;
+
+end; //
+
+
+
+//////////////////////////////////////////////////////////
+///  cursors example no 2
+ using continue handler  selecting sal and ename
+ 
+delimiter //
+
+create procedure cur3()
+begin
+    declare a int;
+    declare b char(15);
+    declare y int default 0;
+
+
+    declare c1 cursor for select sal, enmae from empp;
+    declare continue handler for not found set y = 1;
+
+   
+    open c1;
+    cursor_c1_loop: loop
+        fetch c1 into a, b;
+
+        if y = 1 then
+            leave cursor_c1_loop;
+        end if;
+
+        insert into temp values(a, b);
+    end loop cursor_c1_loop;
+
+    close c1;
+end;
+//
+
+
+//////////////////////////////////////////////////////////
+///  cursors example no 4
+ using continue handler  selecting round(sal) and upper(ename)
+ 
+delimiter //
+create procedure cur4()
+begin
+declare a int;
+declare b char(15);
+
+declare y int default 0;
+
+declare c1 cursor for select round(sal) ,upper(enmae) from empp where sal order by desc;
+declare continue handler for not found set y = 1;
+
+open c1;
+cursor_c1_loop : loop
+fetch c1 into a,b;
+
+if y=1 then
+leave cursor_c1_loop;
+end if;
+
+insert into temp values(a,b);
+
+end loop cursor_c1_loop;
+close c1;
+end; //
+
+
+//////////////////////////////////////////////////////////
+///  cursors example no 5
+ using continue handler  selecting * where dept no =1
+ 
+delimiter //
+create procedure cur5()
+begin
+declare a int;
+declare b char(15);
+declare c int;
+declare d int;
+
+declare y int default 0;
+
+declare c1 cursor for select * from empp where deptno =1;
+declare continue handler for not found set y =1;
+
+open c1;
+cursor_c1_loop:loop
+fetch c1 into a,b,c,d;
+
+if y = 1 then
+leave cursor_c1_loop;
+end if;
+
+insert into temp values (c,b);
+
+end loop cursor_c1_loop;
+close c1;
+end; //
+ 
+
+
+//////////////////////////////////////////////////////////
+///  cursors example no 6
+ using continue handler  update sal
+ 
+ 
+delimiter //
+create procedure cur6()
+begin
+declare a int;
+declare b char(15);
+declare c int;
+declare d int;
+
+declare y int default 0;
+
+declare c1 cursor for select * from empp;
+declare continue handler for not found set y=1;
+
+
+open c1;
+cursor_c1_loop:loop
+fetch c1 into a,b,c,d;
+
+if y=1 then
+leave cursor_c1_loop;
+end if;
+
+update empp set sal=sal+1;
+
+end loop cursor_c1_loop;
+close c1;
+end; //
+
+
+//////////////////////////////////////////////////////////
+///  cursors example no 7
+ using continue handler  update sal where
+ 
+ 
+ delimiter //
+ create procedure cur7()
+ begin
+ declare a int;
+ declare b char(15);
+ declare c int;
+ declare d int;
+ declare y int default 0;
+
+ declare c1 cursor for select * from empp;
+ declare continue handler for not found set y=1;
+ 
+ open c1;
+  cursor_c1_loop:loop
+  fetch c1 into a,b,c,d;
+ 
+  if y=1 then
+  leave cursor_c1_loop;
+  end if;
+ 
+  if c > 7000 then
+  update empp set sal = sal+1;
+ 
+  end if;
+ 
+  end loop cursor_c1_loop;
+ 
+ close c1;
+ 
+ end;//
+ 
+///////////////////////////////////////////////////////////
+cursor delete
+///////////////////////////////////////////////////////////
+ 
+ 
+delimiter //
+create procedure abc()
+begin
+declare a int;
+declare b varchar(15);
+declare c int;
+declare d int;
+declare finished int default 0;
+declare c1 cursor for select * from emp for update;     // for update complusory
+declare continue handler for not found set finished = 1;
+open c1;
+cursor_c1_loop : loop
+fetch c1 into a,b,c,d;
+if finished = 1 then
+leave cursor_c1_loop;
+end if;
+if c > 7000 then
+delete from emp where empno = a;
+end if;
+
+
+end loop cursor_c1_loop;
+close c1;
+commit;                 // commit compulsoary
+end; //
+delimiter;
+
+
+//////////////////////////////////////////////////////////
+
+IN PARAMETER
+
+//////////////////////////////////////////////////////////
+
+
+delimiter //
+create procedure abc(in y int)             // in is optional
+begin
+insert into tempp values(y, 'inside abc');
+end; //
+delimiter ;
+call abc(5);
+set @x = 10;
+call abc(@x);
+set @x =10;
+call abc(2*@x+5);
+
+
+
+//////////////////////////////////////////////////////////
+
+OUT PARAMETER
+
+//////////////////////////////////////////////////////////
+
+create procedure abc(out y int)
+begin
+set y = 100;                y cannt be on RHS OF set
+end; //
+delimiter ;
+set @x = 10;
+select @x from dual;->10
+call abc(@x);
+select @x from dual;
+
+//////////////////////////////////////////////////////////
+
+INOUT PARAMETER
+
+//////////////////////////////////////////////////////////
+ 
+ 
+delimiter //
+create procedure abc(inout y int)
+begin
+set y = y*y*y;
+end; //
+delimiter ;
+set @x = 10;
+select @x from dual;              =10
+call abc(@x);
+select @x from dual;  = 1000
+
+
+
+ 
+//////////////////////////////////////////////////////////
+
+Assignment 2
+
+//////////////////////////////////////////////////////////
+
+
+create table op(
+res char(20)
+);
+
+delimiter //
+create procedure exe2()
+begin
+declare x int;
+declare y int default 0;
+
+declare c1 cursor for select * from Exe2;
+declare continue handler for not found set y =1;
+
+open c1;
+c1_cursor_loop:loop
+fetch c1 into x;
+
+if y =1 then
+leave c1_cursor_loop;
+end if;
+
+if x <= 10 then
+insert into op values ('In Range');
+else
+insert into op values ('Not In Range');
+end if;
+
+end loop c1_cursor_loop;
+close c1;
+
+end; //
+
+
+
+
+//////////////////////////////////////////////////////////
+
+function
+
+//////////////////////////////////////////////////////////
+
+
+delimiter //
+create function abc()
+returns int
+deterministic
+begin
+return 10;
+end; //
+
+create procedure pqr()
+begin
+declare x int;
+set x = abc();
+insert into temp values(x,'after abc');
+end;//
+
+call pqr();
+
+select * from temp;
+
+
+////////////////////////////////////////////////////
+function with parameters
+//////////////////////////////////////////////////////
+
+delimiter //
+create function abc(y int)
+returns int
+begin
+return y*y;
+end;//
+
+delimiter //
+create procedure pqr()
+begin
+declare x int;
+set x = abc(10);
+insert into temp values(x,'after abc');
+end;
+
+
+////////////////////////////////////////////////////
+
+create table emmp(
+ename char(10),
+sal int
+);
+
+
+delimiter //
+create function abc(y int)
+returns int
+deterministic
+begin
+if y>5000 then
+return true;
+else
+return false;
+
+end if;
+end;//
+
+
+create procedure pqr()
+begin
+declare x int;
+select sal into x from emmp where ename = 'King';
+
+if abc(x) then
+insert into temp values(x,'x>5000');
+else
+insert into temp values(x,'x<5000');
+end if;
+
+end//
+
+
+//////////////////////////////////////////////////////////
+
+TRIGGERS
+
+//////////////////////////////////////////////////////////
+
+create table triemp(
+ename char(2),
+sal int,
+deptno int
+);
+
+insert into triemp values('A',5000,1) , ('B',5000,1) ,('C',5000,1),('D',3000,2),('E',3000,2) ;
+
+create table trideptot(
+deptno int,
+saltot int
+);
+
+insert into trideptot values(1,15000) , (2,6000);
+
+select deptno,sum(sal) from triemp group by deptno//
+
+
+//////////////////////////////////////////////////////////
+practice 1 triggers
+////////////////////////////////////////////////////////////
+
+
+create table tritemp(
+x int,
+y char(10)
+);
+
+
+delimiter //
+create trigger abc
+before insert
+on triemp for each row
+begin
+insert into tritemp values (1,'inserted');
+end;//
+
+select * from tritemp;
+
+///////////////////////////////////////////////////////////
+
+delimiter //
+create trigger abc2
+before insert
+on triemp for each row
+begin
+insert into tritemp values (new.sal , new.ename);
+end; //
+
+
+//////////////////////////////////////////////////////////
+
+delimiter //
+create trigger abc3
+before update
+on triemp for each row
+begin
+update trideptot set saltot = saltot + new.sal where deptno = new.deptno;
+
+end;//
+
+
+drop trigger abc3
+
+//////////////////////////////////////////////////////////
+
+delimiter //
+create trigger abc4
+before delete
+on triemp for each row
+begin
+insert into tritemp vlaues(2,'deleted');
+end;//
+
+
+
+
+///////////////////////////////////////////////////////////
+
+when we have join with distinct then EXISTS can be used
+
+UNION => will combine the output of both the SELECTs and it will supress the duplicates
+
+
+UNION ALL => will combine the output of both the SELECTs and the duplicates are not supressed
+
+
+INTERSECT => will return what is common in both the SELECTs and it will supress the duplicates
+
+
+INLINE VIEW => if you use sub-query in the FROM clause, it is known as INLINE VIEW
+
+
+ALTER RENAME - DDL
+rename table emp to employees;
+
+alter table emp add gst float;     // ADD A COL
+
+alter table emp drop column gst;   //  FROP A COL
+
+
+// INCREASE WIDTH OF COL
+alter table emp modify ename varchar(30); -> data will get truncated
+
+
+/////////////////////////////////////////
+Procedure
+/////////////////////////////////////////
+
+delimiter//
+create procedure abc()
+begin
+declare x int default 3000;
+declare y float default 0.40;
+
+declare hra float;
+set hra = x*y;
+
+insert into temp values (x,y);
+insert into temp values ('hra',hra);
+
+end;
+
+
+/////////////////////////////////////
+parameterized procedure
+////////////////////////////////////
+
+delimiter //
+create procedure abc(x int , y float)
+begin
+
+declare hra float;
+
+set hra = x*y;
+
+insert into temp values(hra,'hra');
+
+end;
+
+
+call abc(3000,0.40);
+
+
+//////////////////////////////////////////////
+procedure
+//////////////////////////////////////////////
+
+delimiter //
+create procedure qwe()
+begin
+declare x int;
+declare y char(15);
+
+select sal,ename into x,y from emp where ename = 'King';
+
+
+insert into temp values(x,y);
+
+end;
+
+//////////////////////////////////////////////
+procedure IF
+//////////////////////////////////////////////
+
+delimiter //
+create procedure qwe()
+begin
+declare x int ;
+
+select sal into x from emp where ename = 'king';
+
+if x > 3000 then
+insert into temp values (x,'king sal');
+end if;
+
+end//
+
+///////////////////////////////////////////////
+
+delimiter //
+create procedure abc()
+begin
+declare x int;
+select sal into x from emp
+where ename = 'KING' ;
+if x > 4000 then
+insert into tempp values(x , 'High Sal');
+else
+if x < 4000 then
+insert into tempp values(x , 'Low Sal');
+else
+insert into tempp values(x , 'Medium Sal');
+end if;
+end if;
+
+end; //
+delimiter
+
+////////////////////////////////////////////////////////
+elseif procedure
+////////////////////////////////////////////////////////
+
+
+delimiter //
+create procedure abc()
+begin
+declare x int;
+select sal into x from emp
+where ename = 'KING' ;
+if x > 4000 then
+insert into tempp values(x , 'High Sal');
+elseif x < 4000 then
+insert into tempp values(x , 'Low Sal');
+else
+insert into tempp values(x , 'Medium Sal');
+end if;
+
+end; //
+delimiter ;
+
+
+//////////////////////////////////////////////////////////
+procedure boolean
+//////////////////////////////////////////////////////////
+
+
+delimiter //
+create procedure abc()
+begin
+declare x boolean default TRUE;
+if x then
+insert into tempp values(1 , 'Mumbai');
+end if;
+end; //
+delimiter ;
+
+
+////////////////////////////////////////////////////////
+procedure boolean not
+////////////////////////////////////////////////////////
+
+delimiter//
+create procedure asd()
+begin
+declare x boolean default FALSE;
+
+if not x then
+insert into temp values (1,'delhi');
+end if;
+
+end;//
+
+
+
+////////////////////////////////////////////////////////
+procedure while
+////////////////////////////////////////////////////////
+
+delimiter //
+create procedure abc()
+begin
+
+declare x int default 1;
+
+while x < 10 do
+insert into temp values (x , 'in while loop');
+
+set x = x+1;
+
+end while;
+end//
+
+////////////////////////////////////////////////////////
+procedure nested while loop
+////////////////////////////////////////////////////////
+
+
+delimiter //
+create procedure abc()
+begin
+declare x int default 1;
+declare y int default 1;
+while x < 10 do
+while y < 10 do
+insert into tempp values(y , 'in y loop');
+set y = y+1;
+end while;
+insert into tempp values (x, 'in x loop')
+set x = x+1;
+end while;
+
+end; //
+delimiter ;
+
+
+
+////////////////////////////////////////////////////////
+procedure repeat
+////////////////////////////////////////////////////////
+
+
+delimiter //
+create procedure abc()
+begin
+declare x int default 1;
+repeat
+insert into tempp values(x , 'in loop');
+set x = x+1;
+until x > 5
+end repeat;
+end; //
+delimiter ;
+
+
+////////////////////////////////////////////////////////
+procedure loop
+////////////////////////////////////////////////////////
+
+
+
+delimiter //
+create procedure abc()
+begin
+declare x int default 1;
+pqr_loop:loop
+
+if x > 10 then
+leave pqr_loop;
+end if;
+set x = x + 1;
+
+if mod(x,2) != 0 then
+iterate pqr_loop;
+else
+
+insert into tempp values (x , 'inside loop');
+
+end if;
+
+end loop;
+end; //
+delimiter ;
+
+
+
+//////////////////////////////////////////////////////////////////
+MONGO DB
+//////////////////////////////////////////////////////////////////
+
+1) VIEW LIST OF AVAILABLE DATABASES
+
+show dbs
+
+2) CREATE A NEW DATABASE
+
+use CDAC
+
+3) SHOW COLLECTION
+show collection
+
+4) TO CREATE COLLECTION
+db.createCollection('Library')
+
+5) TO SHOW COLLECTION DISPLAY
+db.Library.find()
+
+6) INSERT ANOTHER DOCUMENT IN LIBRARY
+
+db.Library.insert({title:"Mongo db programming"},{authors:['jack','Jill'], likes:100})
+
+
+7) TO FIND FIRST INSERTED ELEMENT
+db.Library.findOne()
+
+8) USING PRETTY
+db.Library.find().pretty()
+
+9) UPDATE DOCUMENT
+db.Library.update({author:'samer'},{$set :{author:'samer dehdrai'}})
+
+
+10) TO DELETE ALL DOCUMENTS WHERE LIKES =1000
+db.Library.remove({likes: 1000})
+
+db.Library.deleteOne({likes:1000})
+db.Library.deleteMany({likes:1000})
+db.Library.findOneAndDelete({likes:1000})
+
+11) DROP LIBRARY
+db.Library.drop()
+
+12) DROP DATABASE
+db..dropDatabase('CDAC')
+
+exit
+
+1) sortByCount = db.emp.aggregate([{ $sortByCount: "$age"}]);
+
+
+2) db.emp.find({empty},{key:value})
+
+
+3) db.emp.update({inital value},{$set:{update value}})
+
+
+4) deb.emp.deleteMany({key:Vlaue});
+
+5) db.student.find().sort({age:1})= Ascending
+
+6) db.student.find().sort({age:-1}) = descending
+
+7) db.student.count({age:{$gt:18}}) = Count the Students whose age is greater than 18
+
+8) db.student.countDocuments({age:{$gt:18}}) = Count documents whose age is greater than 18
+
+9) db.gfg.find({"content":/c/i}).limit(2) = limit
+
+10) distinct = db.student.distinct("name") -> Find distinct elements
+
+
+///////////////////////////////////////////////////////////////
+
+db.Library.find().sort({age:1})
+
+

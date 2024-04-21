@@ -1,0 +1,159 @@
+MySQL-PL
+
+EXERCISE 3
+
+1. Write a program containing a loop that iterates from 1 to 1000 using a variable I,which is incremented each time around the loop. The program should output the value of I every hundred iterations (i.e., the output should be 100, 200, etc.).
+Ans:
+
+
+DELIMITER //
+
+CREATE PROCEDURE E3Q1()
+
+BEGIN 
+
+	DECLARE X INT;
+	
+	SET X = 1;
+	
+	WHILE (X <= 1000) DO
+		IF (X % 100 = 0) THEN
+			INSERT INTO TEMPP VALUES(X, '100's WHILE LOOP');
+		END IF;
+		SET X = X + 1;
+	END WHILE;
+	
+
+END //
+
+
+DELIMITER ;
+
+
+
+
+
+
+2. Write a program that Selects from any table a minimum and maximum value for a radius, along with an increment factor, and generates a series of radii by repeatedly adding the increment to the minimum until the maximum is reached. For each value of the radius, compute and display the circumference, area, and volume of the sphere. (Be sure to include both the maximum and the minimum values.).
+Ans:
+
+
+CREATE TABLE RADII(
+
+	RADIUS FLOAT(7,2),
+	INCRE INT(4)
+
+);
+
+
+INSERT INTO RADII VALUES
+(3,1),(4,1),(5,1),(6,1);
+
+
+
+DELIMITER //
+
+CREATE PROCEDURE RADCAV()
+
+
+BEGIN 
+	DECLARE MINRAD FLOAT(7,2);
+	DECLARE MAXRAD FLOAT(7,2);
+	DECLARE Y INT;
+	DECLARE C FLOAT  DEFAULT 0;
+	DECLARE A FLOAT DEFAULT 0;
+	DECLARE V FLOAT DEFAULT 0;
+
+
+	SELECT MIN(RADIUS) INTO MINRAD FROM RADII;
+	SELECT MAX(RADIUS) INTO MAXRAD FROM RADII;
+	SELECT MIN(RADIUS) INTO Y FROM RADII;
+	
+	WHILE(Y < MAXRAD) DO
+	INSERT INTO TEMPP VALUES(Y, 'RADIUS');
+	INSERT INTO TEMPP VALUES(2*3.14*Y, 'CIRCUMFERENCE');
+	INSERT INTO TEMPP VALUES(3.14*Y*Y, 'AREA');
+	INSERT INTO TEMPP VALUES((4*3.14*Y*Y*Y)/3, 'VOLUME');
+	
+	SET Y = Y + 1;
+
+	END WHILE;
+	
+	 
+
+
+
+END //
+
+
+DELIMITER ;
+
+
+
+
+
+
+
+3. A palindrome is a word that is spelled the same forward and backward, such as level, radar, etc. Write a program to Selects from any table a five letter word and determine whether it is a palindrome.
+Ans:
+
+
+DELIMITER //
+
+
+CREATE PROCEDURE PALINDROME(X VARCHAR)
+	
+BEGIN
+
+	DECLARE STT INT;
+	DECLARE END INT;
+	
+	
+	SET STT = 0;
+	SET END = 5;
+	
+	WHILE (STT < END) DO
+		IF X(STT) = X(END) THEN
+			SET STT = STT + 1;
+			SET END = END - 1;
+	
+
+	END WHILE; 
+
+
+
+
+END //
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

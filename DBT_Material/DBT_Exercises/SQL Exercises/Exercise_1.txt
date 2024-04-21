@@ -1,0 +1,122 @@
+Q1 - Create Table SEMP
+
+CREATE TABLE SEMP(
+EMPNO CHAR(4),
+EMPNAME CHAR(20),
+BASIC FLOAT,
+DEPTNO CHAR(2),
+DEPTHEAD CHAR(4)
+);
+
+
+
+
+Q2 - Create Table SDEPT
+
+CREATE TABLE SDEPT(
+DEPTNO CHAR(2),
+DEPTNAME CHAR(15)
+);
+
+
+
+
+Q3 - Insert Values to SDEPT
+
+
+INSERT INTO SDEPT 
+VALUES('10','DEVELOPMENT');
+
+INSERT INTO SDEPT 
+VALUES('20','TRAINING');
+
+
+
+
+Q4 - Insert values to SEMP 
+
+INSERT INTO SEMP(EMPNO, EMPNAME, BASIC, DEPTNO) VALUES
+('0001', 'SUNIL', 8000, '10'),
+('0002', 'HIREN', 8000, '20');
+
+
+INSERT INTO SEMP VALUES
+('0003', 'ALI', 4000, 10, 0001);
+
+
+INSERT INTO SEMP VALUES
+('0004', 'GEORGE', 6000, NULL, '0002');
+
+
+
+
+
+
+Q5 - S, P, J, SPJ
+
+Ans:
+
+S Table Creation
+
+CREATE TABLE S(
+`S#` CHAR(5) NOT NULL,
+SNAME CHAR(20),
+STATUS SMALLINT,
+CITY CHAR(15)
+);
+
+Inserting to S Table
+
+INSERT INTO S VALUES
+('S1', 'SMITH', 20, 'LONDON'),
+('S2', 'JONES', 10, 'PARIS'),
+('S3', 'BLAKE', 30, 'PARIS'),
+('S4', 'CLARK', 20, 'LONDON'),
+('S5', 'ADAMS', 30, 'ATHENS');
+
+
+
+
+
+P Table Creation
+
+CREATE TABLE P(
+`P#` CHAR(6) NOT NULL,
+PNAME CHAR(20),
+COLOR CHAR(6),
+WEIGHT SMALLINT,
+CITY CHAR(15)
+);
+
+Inserting to P Table
+
+
+INSERT IN P VALUES
+('P1', 'NUT', 'RED', 12, 'LONDON'),
+('P2', 'BOLT', 'GREEN', 17, 'PARIS'),
+('P3', 'SCREW', 'BLUE', 17, 'ROME'),
+('P4', 'SCREW', 'RED', 14, 'LONDON'),
+('P5', 'CAM', 'BLUE', 12, 'PARIS'),
+('P6', 'COG', 'RED', 19, 'LONDON');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

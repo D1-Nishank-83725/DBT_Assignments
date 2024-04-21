@@ -1,0 +1,101 @@
+DELIMITER //
+
+CREATE PROCEDURE ChkClass(IN emp_id INT)
+BEGIN
+    DECLARE emp_salary DECIMAL(10, 2);
+    DECLARE emp_class VARCHAR(20);
+
+    -- Get the salary of the employee
+    SELECT SALARY INTO emp_salary FROM employees WHERE EMPLOYEE_ID = emp_id;
+
+    -- Determine the class based on the salary
+    SET emp_class = CASE
+        WHEN emp_salary < 5000 THEN 'Lower Class'
+        WHEN emp_salary >= 5000 AND emp_salary < 15000 THEN 'Middle Class'
+        ELSE 'Higher Class'
+    END;
+
+    -- Insert the result into the status table
+    INSERT INTO STATUS_TABLE (salary, e_status) VALUES (emp_salary, emp_class);
+END//
+
+DELIMITER ;
+
+
+
+
+
+CREATE TABLE accounts(
+id INT AUTO_INCREMENT PRIMARY KEY,
+type VARCHAR(25),
+balance INT
+
+);
+
+
+
+CREATE TABLE transactions(
+id INT AUTO_INCREMENT PRIMARY KEY,
+accid INT,
+type VARCHAR(25),
+amount INT,
+txtime TIMESTAMP
+
+);
+
+
+
+DELIMITER //
+
+CREATE TRIGGER TKLOG
+AFTER INSERT 
+ON accounts FOR EACH ROW
+
+
+BEGIN
+	INSERT INTO transactions VALUES
+	(new.id, new.id, new.type, new.balance, CURRENT_TIMESTAMP);
+
+
+END //
+
+DELIMITER ;
+	
+	
+	
+
+
+
+db.library.insertMany([
+    { id: 1001, name: "Pointers in C", author: "Yashwant Kanetkar", subject: "C Programming", price: 123.456 },
+    { id: 1002, name: "Exploring C", author: "Yashwant Kanetkar", subject: "C Programming", price: 371.019 },
+    { id: 1003, name: "ANSI C Programming", author: "E Balaguruswami", subject: "C Programming", price: 334.215 },
+    { id: 1004, name: "ANSI C Programming", author: "Dennis Ritchie", subject: "C Programming", price: 140.121 },
+    { id: 2001, name: "C++ Complete Reference", author: "Herbert Schildt", subject: "C++ Programming", price: 417.764 }
+]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

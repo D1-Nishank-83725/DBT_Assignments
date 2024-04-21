@@ -1,0 +1,432 @@
+CREATE TABLE Customers(
+CustomerId int(4) primary key,
+name varchar(20),
+address varchar(30)
+);
+
+
+CREATE TABLE Products(
+
+productId int(4) primary key,
+productName varchar(20),
+CustomerId int(4),
+FOREIGN KEY (CustomerId) references Customers(CustomerId)
+
+);
+
+
+
+INSERT INTO Customers values
+(1, 'Kohli', 'Bengaluru'),
+(2, 'Dhoni', 'Chennai'),
+(3, 'Rohit', 'Mumbai'),
+(4, 'Hardik', 'Gujrat');
+
+
+
+INSERT INTO Products values
+(101,'Mobile',1),
+(102,'Television',2),
+(103,'Tablet',1),
+(104,'Laptop',3),
+(105,'Charger',4),
+(106,'Computer',3),
+(107,'EarPhones',2),
+(108,'Multimedia',1);
+
+
+
+
+SQL Questions:
+
+
+
+1. Provide a list of customers along with the total number of products they have purchased, but only for customers who have purchased more than two products?
+
+
+
+
+SELECT name, count(Products.CustomerId) from Customers, Products group by(name) having count(Customers.CustomerId) > 2;
+
+
+SELECT name, count(Products.CustomerId) from Customers, Products where count(CustomerId) in (SELECT count(Customers.CustomerId group by(name); 
+
++--------+----------------------------+	
+| name   | count(Products.CustomerId) |
++--------+----------------------------+
+| Hardik |                          1 |
+| Rohit  |                          2 |
+| Dhoni  |                          2 |
+| Kohli  |                          3 |
++--------+----------------------------+
+
+
+
+
+
+
+2. Give the names of customers along with the names of products they have purchased, where the product name starts with the letter 'C'.
+
+
+SELECT name, productName from Customers, Products where productName like "C%" and Customers.customerId = Products.CustomerId;
+
+
+
++--------+-------------+
+| name   | productName |
++--------+-------------+
+| Hardik | Charger     |
+| Rohit  | Computer    |
++--------+-------------+
+
+
+
+
+
+
+
+
+
+
+3. Which customer(s) have spent the most on their purchases?
+
+
+SELECT customerId from Products group by customerId ORDER by count(customerId) DESC limit 1;
+
+
++------------+
+| customerId |
++------------+
+|          1 |
++------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL PL Programs:
+
+
+1. Write a stored procedure to generate five random numbers.
+
+create table resultop1(
+
+fir varchar(20),
+sec int(4)
+
+);
+
+
+
+
+DELIMITER //
+
+
+CREATE PROCEDURE SQLPL1()
+
+
+BEGIN
+
+DECLARE X INT DEFAULT 0;
+DECLARE Y INT DEFAULT 0;
+
+
+WHILE X < 5 DO
+
+
+SELECT FLOOR(1 + (RAND() * 99)) INTO Y FROM DUAL;
+INSERT INTO resultop1 values('Number', Y);
+
+
+SET X = X + 1;
+	
+END WHILE;
+	
+
+END //
+
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+CALL SQLPL1;
+
+
+
+
+
+
+
+
+O/P:
+
+D1_83725_NISHANK>SELECT * FROM resultop1;
++--------+------+
+| fir    | sec  |
++--------+------+
+| Number |   29 |
+| Number |   84 |
+| Number |   34 |
+| Number |   18 |
+| Number |   87 |
++--------+------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Write a Function to return difference (in year) of given date and current date.
+
+
+DELIMITER //
+
+CREATE FUNCTION SQLPL2()
+
+DECLARE X INT;
+SET X = 0;
+
+BEGIN
+
+	SELECT DATEDIFF(yyyy, '2011/11/18', '2024/03/30') INTO X FROM DUAL;
+	INSERT INTO resultop1 values('Date Difference', X);
+	RETURN X;
+
+END //
+
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+
+NoSQL
+
+
+
+1.Create the data base called Training in mongodb.
+
+use Training
+
+
+test> use Training
+switched to db Training
+Training> 
+
+
+
+
+
+
+
+2.Create the collection courses as shown in above the diagram.
+
+
+Training.createCollection('courses')
+
+
+
+
+
+
+
+
+
+3.Insert all the above 4 documents in the Courses collection.
+
+
+
+db.courses.insert({Course_Name:"DBT", Fees: 6000, Duration: 2, Professor: 'Arun Sir'})
+db.courses.insert({Course_Name:"C Programming",Fees: 4000, Duration: 4, Professor: 'Kiran Mam'})
+db.courses.insert({Course_Name:"C#",Fees: 12000, Duration: 6, Professor: 'Devid Sir'})		  
+db.courses.insert({Course_Name:"Java",Fees: 10000, Duration: 7, Professor: 'Muriyam Mam'})
+
+
+
+
+Training> db.courses.insert({Course_Name:"DBT", Fees: 6000, Duration: 2, Professor: 'Arun Sir'})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6607e4ce1e200f89cc7b2dab') }
+}
+Training> db.courses.insert({Course_Name:"C Programming",Fees: 4000, Duration: 4, Professor: 'Kiran Mam'})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6607e4d31e200f89cc7b2dac') }
+}
+Training> db.courses.insert({Course_Name:"C#",Fees: 12000, Duration: 6, Professor: 'Devid Sir'})		  
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6607e4db1e200f89cc7b2dad') }
+}
+Training> db.courses.insert({Course_Name:"Java",Fees: 10000, Duration: 7, Professor: 'Muriyam Mam'})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6607e4e01e200f89cc7b2dae') }
+}
+Training> db.courses.find()
+[
+  {
+    _id: ObjectId('6607e4ce1e200f89cc7b2dab'),
+    Course_Name: 'DBT',
+    Fees: 6000,
+    Duration: 2,
+    Professor: 'Arun Sir'
+  },
+  {
+    _id: ObjectId('6607e4d31e200f89cc7b2dac'),
+    Course_Name: 'C Programming',
+    Fees: 4000,
+    Duration: 4,
+    Professor: 'Kiran Mam'
+  },
+  {
+    _id: ObjectId('6607e4db1e200f89cc7b2dad'),
+    Course_Name: 'C#',
+    Fees: 12000,
+    Duration: 6,
+    Professor: 'Devid Sir'
+  },
+  {
+    _id: ObjectId('6607e4e01e200f89cc7b2dae'),
+    Course_Name: 'Java',
+    Fees: 10000,
+    Duration: 7,
+    Professor: 'Muriyam Mam'
+  }
+]
+
+
+
+
+4.Update the document with duration to the 4 whose course name is DBT.
+
+
+db.courses.update({Duration:4},{$set :{Course_Name:"DBT"}})
+
+
+
+
+Training> db.courses.update({Duration:4},{$set :{Course_Name:"DBT"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Training> db.courses.find()
+[
+  {
+    _id: ObjectId('6607e4ce1e200f89cc7b2dab'),
+    Course_Name: 'DBT',
+    Fees: 6000,
+    Duration: 2,
+    Professor: 'Arun Sir'
+  },
+  {
+    _id: ObjectId('6607e4d31e200f89cc7b2dac'),
+    Course_Name: 'DBT',   // This is the Main Line in which change has occured
+    Fees: 4000,
+    Duration: 4,
+    Professor: 'Kiran Mam'
+  },
+  {
+    _id: ObjectId('6607e4db1e200f89cc7b2dad'),
+    Course_Name: 'C#',
+    Fees: 12000,
+    Duration: 6,
+    Professor: 'Devid Sir'
+  },
+  {
+    _id: ObjectId('6607e4e01e200f89cc7b2dae'),
+    Course_Name: 'Java',
+    Fees: 10000,
+    Duration: 7,
+    Professor: 'Muriyam Mam'
+  }
+]
+
+
+
+
+
+
+5.Delete the document from Courses collection , where Course name is Java.
+
+
+db.courses.remove({Course_Name: 'Java'})
+
+
+Training> db.courses.remove({Course_Name: 'Java'})
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 1 }
+
+
+
+
+
+Training> db.courses.find()
+[
+  {
+    _id: ObjectId('6607e4ce1e200f89cc7b2dab'),
+    Course_Name: 'DBT',
+    Fees: 6000,
+    Duration: 2,
+    Professor: 'Arun Sir'
+  },
+  {
+    _id: ObjectId('6607e4d31e200f89cc7b2dac'),
+    Course_Name: 'DBT',
+    Fees: 4000,
+    Duration: 4,
+    Professor: 'Kiran Mam'
+  },
+  {
+    _id: ObjectId('6607e4db1e200f89cc7b2dad'),
+    Course_Name: 'C#',
+    Fees: 12000,
+    Duration: 6,
+    Professor: 'Devid Sir'
+  }
+]
+
+JAVA NOT PRESENT, when documents were viewed
+
+
+

@@ -1,0 +1,117 @@
+MySQL-PL
+
+EXERCISE 2
+
+
+1. Select from any table a number and determine whether it is within a given range (for example, between 1 and 10).
+Ans:
+
+
+DELIMITER //
+
+CREATE PROCEDURE E2Q1()
+
+BEGIN
+	
+	DECLARE X FLOAT(7,2);
+	TRUNCATE TABLE TEMPP;
+	
+	
+	SELECT BASIC INTO X FROM SEMP WHERE EMPNAME = 'GEORGE';
+	
+	IF X < 4000 THEN
+		INSERT INTO TEMPP VALUES(X, 'MEDIUM SALARY');
+		
+	ELSEIF X BETWEEN 4000 AND 6000 THEN
+		INSERT INTO TEMPP VALUES(X, 'HIGH SALARY');
+	
+	ELSE
+		INSERT INTO TEMPP VALUES(X, 'ULTRA HIGH SALARY');
+	
+	END IF;
+
+
+
+END //
+
+
+DELIMITER ;
+
+
+
+
+2. Select from any table three positive integers representing the sides of a triangle, and determine whether they form a valid triangle. Hint: In a triangle, the sum of any two sides must always be greater than the third side.
+Ans:
+
+
+DELIMITER //
+
+CREATE PROCEDURE E2Q2()
+
+
+BEGIN
+
+	DECLARE X INT;
+	DECLARE Y INT;
+	DECLARE Z INT;	
+
+	SELECT WEIGHT INTO X FROM P WHERE PNAME = 'NUT';
+	SELECT WEIGHT INTO Y FROM P WHERE PNAME = 'BOLT';
+	SELECT WEIGHT INTO Z FROM P WHERE PNAME = 'COG';
+
+
+	IF X + Y > Z AND Y + Z > X AND X + Z > Y THEN
+		INSERT INTO TEMPP VALUES(NULL, 'VALID TRAINGLE');
+	ELSE
+		INSERT INTO TEMPP VALUES(NULL, 'INVALID TRAINGLE');
+	END IF;
+	
+END //
+
+
+DELIMITER ;
+
+
+
+
+
+3. Check if a given a year is a leap year. The condition is:- year should be (divisible by 4 and not divisible by 100) or (divisible by 4 and divisible by 400.). The year should be Selected from some table.
+Ans:
+
+
+
+
+DELIMITER //
+
+CREATE PROCEDURE E2Q3()
+
+
+BEGIN
+
+	DECLARE YEAR INT;
+
+
+	SELECT CNUM INTO YEAR FROM ORDERS WHERE ONUM = 3001;
+
+
+	IF (YEAR%4 = 0 AND YEAR%100 != 0) OR (YEAR%4 = 0 AND YEAR%400 = 0) THEN
+		INSERT INTO TEMPP VALUES(YEAR, 'IS A LEAP YEAR');
+	ELSE
+		INSERT INTO TEMPP VALUES(YEAR, 'IS NOT A LEAP YEAR');
+	END IF;
+	
+END //
+
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,109 @@
+MySQL-PL
+
+
+EXERCISE 1
+
+
+
+1. Write a program that computes the perimeter and the area of a rectangle. Define your own values for the length and width. (Assuming that L and W are the length and width of the rectangle, 
+Perimeter = 2*(L+W) and Area = L*W.
+Ans:
+
+
+DELIMITER //
+CREATE PROCEDURE E1Q1()
+
+BEGIN
+
+DECLARE L INT;
+DECLARE B INT;
+DECLARE AREA INT;
+DECLARE PERIMETER INT;
+
+SET L = 10;
+SET B = 5;
+SET AREA = L*B;
+SET PERIMETER = 2*(L+B)
+
+	INSERT INTO TEMPP VALUES(AREA, 'AREA');
+	INSERT INTO TEMPP VALUES(PERIMETER, 'PERIMETER');
+
+END //
+DELIMITER ;
+
+
+FOR O/P:
+SELECT SEC, FIR FROM TEMPP;
+
+
+
+
+2. Convert a temperature in Fahrenheit (F) to its equivalent in Celsius (C) and vice versa. The required formulae are:- C= (F-32)*5/9    F= 9/5*C + 32
+Ans:
+
+
+DELIMITER //
+
+CREATE PROCEDURE E1Q2()
+
+BEGIN 
+
+	DECLARE C FLOAT DEFAULT 0;
+	DECLARE F FLOAT DEFAULT 41;
+	
+	DECLARE X FLOAT;
+	DECLARE Y FLOAT;
+	
+	SET X = (F-32)*5/9;
+	SET Y = (9/5)*C + 32;
+	
+	INSERT INTO TEMPP VALUES (X, 'F TO C');
+	INSERT INTO TEMPP VALUES (Y, 'C TO F');
+				
+
+END //
+
+
+DELIMITER ;
+
+
+
+
+
+
+3. Write a program that enables a user to input an integer. The program should then state whether the integer is evenly divisible by 5.
+Ans:
+
+DELIMITER //
+
+
+CREATE PROCEDURE E1Q3()
+
+BEGIN
+	
+	DECLARE X INT;
+	
+	SET X = 10;
+	
+	IF (X % 5) = 0 THEN
+		INSERT INTO TEMPP VALUES(X, 'DIVISIBLE BY 5');
+	ELSE
+		INSERT INTO TEMPP VALUES(X, 'NOT DIVISIBLE BY 5');
+
+	END IF;
+	
+END //
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+

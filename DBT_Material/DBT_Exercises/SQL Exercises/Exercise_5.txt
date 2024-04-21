@@ -1,0 +1,65 @@
+1. Display the Supplier name and the Quantity sold.
+Ans:
+D1_83725_NISHANK>SELECT SNAME, SUM(QTY) FROM S, SP WHERE S.`S#` = SP.`S#` GROUP BY SNAME;
+
+
+
+2. Display the Part name and Quantity sold.
+Ans:
+D1_83725_NISHANK>SELECT PNAME, SUM(QTY) FROM P, SP WHERE P.`P#` = SP.`P#` GROUP BY PNAME;
+
+
+
+3. Display the Project name and Quantity sold.
+Ans:
+D1_83725_NISHANK>SELECT JNAME, SUM(QTY) FROM J, SP WHERE J.`J#` = SP.`J#` GROUP BY JNAME;
+
+
+
+4. Display the Supplier name, Part name, Project name and Quantity sold.
+Ans:
+D1_83725_NISHANK>SELECT SNAME, PNAME, JNAME, SUM(QTY) FROM S,P,J,SP WHERE S.`S#` = SP.`S#` AND P.`P#` = SP.`P#` AND J.`J#` = SP.`J#` GROUP BY SNAME, PNAME, JNAME;
+
+
+
+5. Display the Supplier name, Supplying Parts to a Project in the same City.
+Ans:
+D1_83725_NISHANK>SELECT PNAME, SUM(QTY) FROM P, SP WHERE COLOR = 'RED' GROUP BY PNAME;
+
+
+
+6. Display the Part name that is ‘Red’ is color, and the Quantity sold.
+Ans:
+D1_83725_NISHANK>SELECT PNAME, SUM(QTY) FROM P, SP WHERE COLOR = 'RED' GROUP BY PNAME;
+
+
+
+7. Display all the Quantity sold by Suppliers with the Status = 20.
+Ans:
+D1_83725_NISHANK>SELECT SP.`S#`, SUM(QTY) FROM S, SP WHERE STATUS = 20 GROUP BY SP.`S#`;
+
+
+
+8. Display all the Parts and Quantity with a Weight > 14.
+Ans:
+D1_83725_NISHANK>SELECT SP.`P#`, SUM(QTY) FROM P, SP WHERE WEIGHT > 14 GROUP BY SP.`P#`;
+
+
+
+
+9. Display all the Project names and City, which has bought more than 500 Parts.
+Ans:
+D1_83725_NISHANK>SELECT JNAME, CITY, QTY FROM J, SP WHERE QTY > 500 GROUP BY JNAME, CITY, QTY;
+
+
+
+10. Display all the Part names and Quantity sold that have a Weight less than 15.
+Ans:
+D1_83725_NISHANK>SELECT PNAME, QTY, WEIGHT FROM P, SP WHERE WEIGHT < 15 GROUP BY PNAME, QTY, WEIGHT ORDER BY PNAME;
+
+
+
+
+11. Display all the Employee names and the name of their managers.
+Ans:
+

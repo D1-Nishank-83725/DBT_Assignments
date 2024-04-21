@@ -1,0 +1,94 @@
+DBT Queries (Practice Qs):-
+
+1. SELECT ......... display fname and lname in uppercase and concat the two as full name
+Ans:
+D1_83725_NISHANK>SELECT CONCAT(CONCAT(UPPER(FNAME), ' '), UPPER(LNAME)) "FIRST AND LAST NAME IN UPPERCASE" FROM NAMES;
+
+
+
+2. SELECT .......... implement INITCAP(ename) in MySQL
+Ans:
+D1_83725_NISHANK>SELECT CONCAT(       (SUBSTR(UPPER(FNAME), 1, 1)), (SUBSTR(LOWER(FNAME),2))    ) "INITCAP" FROM NAMES;
+
+
+
+3. SELECT .......... display the ENAMEs centre-justfied
+Assume screen width is 80 characters
+Ans:
+D1_83725_NISHANK>SELECT RPAD(LPAD(FNAME, 40, ' '), 80, ' ') "CENTER JUSTFIED NAMES" FROM NAMES;
+
+
+
+4. SELECT .......... display the ENAMEs with the Vowels removed
+SMITA -> SMT
+SUNBEAM -> SNBM
+Ans:
+D1_83725_NISHANK>SELECT REPLACE (REPLACE (REPLACE (REPLACE (REPLACE (REPLACE(FNAME, 'a', ''), 'e', ''), 'i', ''), 'o', ''), 'u', ''), 'y', '') "NAMES FROM VOWELS" FROM NAMES;
+
+
+
+5. SELECT .......... spell out the SALs upto Rs. 5 million. Ignore paise.
+Rs. Two thousand five hundred
+Rs. Four thousand seven hundred fifty
+Ans:In MySQL, you can use a `CASE` statement to achieve this. Here's how you can write a `CASE` statement to convert numbers from 1 to 20 into their corresponding textual representations:
+Sure, if you want to use the value of the `SAL` column instead of a hardcoded number, you can replace `num` with `SAL` in the `CASE` statement. Here's the modified query:
+
+
+SELECT SAL,
+       CASE 
+           WHEN SAL = 1 THEN 'one'
+           WHEN SAL = 2 THEN 'two'
+           WHEN SAL = 3 THEN 'three'
+           WHEN SAL = 4 THEN 'four'
+           WHEN SAL = 5 THEN 'five'
+           WHEN SAL = 6 THEN 'six'
+           WHEN SAL = 7 THEN 'seven'
+           WHEN SAL = 8 THEN 'eight'
+           WHEN SAL = 9 THEN 'nine'
+           WHEN SAL = 10 THEN 'ten'
+           WHEN SAL = 11 THEN 'eleven'
+           WHEN SAL = 12 THEN 'twelve'
+           WHEN SAL = 13 THEN 'thirteen'
+           WHEN SAL = 14 THEN 'fourteen'
+           WHEN SAL = 15 THEN 'fifteen'
+           WHEN SAL = 16 THEN 'sixteen'
+           WHEN SAL = 17 THEN 'seventeen'
+           WHEN SAL = 18 THEN 'eighteen'
+           WHEN SAL = 19 THEN 'nineteen'
+           WHEN SAL = 20 THEN 'twenty'
+       END AS SAL_IN_WORDS
+FROM 
+
+This query will produce the same result as the previous one, but now the textual representations are based on the values of the `SAL` column.
+
+
+This query will return a list of numbers from 1 to 20 alongside their textual representations. Each number is matched with its corresponding textual representation using a `CASE` statement.
+
+
+
+
+6. SELECT .......... SYSDATE(), HIREDATE ........
+e.g. SYSDATE -> 20th Mar, 2024, 7:30 pm
+HIREDATE -> 1st Feb, 2023, 10:00 am
+Display the experience of the employees in years, remainder months, remainder days, remainder hours, remainder minutes, remainders seconds
+e.g.
+1 year, 1 month, 19 days, 9 hours, 30 mins
+Ans:
+
+To use modulo logic instead of substring in the given query, we need to use TIMESTAMPDIFF function to calculate the difference in seconds between the current date and the hire date. Then, we can perform modulo operations to extract the desired parts (years, months, days, hours, minutes, and seconds).
+
+Here's how you can modify the query to use modulo logic:
+
+
+SELECT 
+    FLOOR(TIMESTAMPDIFF(SECOND, HIREDATE, SYSDATE()) / (60 * 60 * 24 * 365)) AS YEAR,
+    FLOOR(TIMESTAMPDIFF(SECOND, HIREDATE, SYSDATE()) / (60 * 60 * 24 * 30) % 12) AS MONTH,
+    FLOOR(TIMESTAMPDIFF(SECOND, HIREDATE, SYSDATE()) / (60 * 60 * 24) % 30) AS DAYS,
+    FLOOR(TIMESTAMPDIFF(SECOND, HIREDATE, SYSDATE()) / (60 * 60) % 24) AS HOURS,
+    FLOOR(TIMESTAMPDIFF(SECOND, HIREDATE, SYSDATE()) / 60 % 60) AS MINUTES,
+    TIMESTAMPDIFF(SECOND, HIREDATE, SYSDATE()) % 60 AS SECONDS
+FROM EMP_HIRING_DATE;
+
+
+
+

@@ -1,0 +1,56 @@
+1. Display all the Supplier names with the initial letter capital.
+Ans:
+D1_83725_NISHANK>SELECT CONCAT(UPPER(SUBSTR((SNAME),1,1)),LOWER(SUBSTR((SNAME),2))) FROM S;
+
+
+2. Display all the Supplier names in upper case.
+Ans:
+D1_83725_NISHANK>SELECT UPPER(SUBSTR(SNAME,1)) FROM S;
+
+
+3. Display all the Supplier names in lower case.
+Ans:
+D1_83725_NISHANK>SELECT LOWER(SUBSTR(SNAME,1)) FROM S;
+
+
+4.Display all the Supplier names padded to 25 characters, with spaces on the left.
+Ans:
+D1_83725_NISHANK>SELECT LOWER(SUBSTR(SNAME,1)) FROM S;
+
+5. Display all the Supplier names (with ‘la’replaced by ‘ro’).
+HINT: REPLACE.
+Ans:
+D1_83725_NISHANK>SELECT REPLACE(SNAME,'LA','RO') FROM S;
+
+
+6. Implement the above command such that ‘l’ is
+replaced with ‘r’ and ‘a’ is replaced with ‘o’.
+Ans:
+D1_83725_NISHANK>SELECT REPLACE(REPLACE(SNAME,'A','O'),'L','R') FROM S;
+
+
+7. Display the Supplier names and the lengths of the names.
+Ans:
+D1_83725_NISHANK>SELECT SNAME, LENGTH(SNAME) FROM S;
+
+
+8. Use the soundex function to search for a supplier by the name of ‘BLOKE’.
+Ans:
+D1_83725_NISHANK>SELECT * FROM S
+    -> WHERE SOUNDEX(SNAME) = SOUNDEX('BLOKE');
+
+
+9. Display the Supplier name and the status (as
+Ten, Twenty, Thirty, etc.).
+Ans:
+D1_83725_NISHANK>SELECT SNAME, REPLACE(REPLACE(REPLACE(STATUS, 20, 'TWENTY'), 30, 'THIRTY'), 10, 'TEN') STATUS FROM S;
+
+
+10. 10. Display the current day (e.g. Thursday).
+Ans:
+D1_83725_NISHANK>SELECT DAYNAME(SYSDATE()) FROM DUAL;
+
+
+
+
+

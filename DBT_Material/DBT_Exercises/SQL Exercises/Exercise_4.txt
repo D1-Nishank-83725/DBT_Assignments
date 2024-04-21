@@ -1,0 +1,84 @@
+SQL Exercise 4
+1.Display the minimum Status in the Supplier table.
+Ans:
+D1_83725_NISHANK>SELECT MIN(STATUS) "MINIMUM STATUS" FROM S;
+
+
+
+2.Display the maximum Weight in the Parts table.
+Ans:
+D1_83725_NISHANK>SELECT MAX(WEIGHT) FROM P;
+
+
+
+3.Display the average Weight of the Parts.
+Ans:
+D1_83725_NISHANK>SELECT AVG(WEIGHT) FROM P;
+
+
+
+4.Display the total Quantity sold for part ‘P1’.
+Ans:
+D1_83725_NISHANK>SELECT `P#`, SUM(QTY) FROM SP WHERE `P#` = 'P1';
+
+
+
+5.Display the total Quantity sold for each part.
+Ans:
+D1_83725_NISHANK>SELECT `P#`, SUM(QTY) FROM SP 
+    -> GROUP BY `P#`;
+
+
+
+
+6.Display the average Quantity sold for each part.
+Ans:
+D1_83725_NISHANK>SELECT `P#`, AVG(QTY) FROM SP GROUP BY `P#`;
+
+
+
+7. Display the maximum Quantity sold for each part,
+provided the maximum Quantity is greater than 800.
+Ans:
+D1_83725_NISHANK>SELECT `P#`, SUM(QTY) FROM SP GROUP BY `P#` HAVING SUM(QTY) >800;
+
+
+
+
+8. Display the Status and the count of Suppliers with
+that Status.
+Ans:
+D1_83725_NISHANK>SELECT STATUS, COUNT(SP.`S#`) "NUMBER OF SUPPLIERS" FROM S, SP WHERE S.`S#` = SP.`S#` GROUP BY STATUS;
+
+
+
+
+9. Display the count of Projects going on in different
+cities.
+Ans:
+D1_83725_NISHANK>SELECT CITY, COUNT(SP.`P#`) "NUMBER OF PROJECTS" FROM P, SP WHERE P.`P#` = SP.`P#` GROUP BY CITY;
+
+
+
+10. What is the difference between COUNT(Status) and
+COUNT(*) ?
+Ans:
+COUNT(Status) will calculate the number of rows excluding the column having the corresponding row NULL
+COUNT(*) will count every Row, whether it is NULL or not;
+
+
+
+
+11. Display the Status and the Count of Suppliers with
+that Status in the following format as shown below:-
+Status                Count
+Ten                     1
+Twenty                  2
+Thirty                  3
+
+Ans:
+D1_83725_NISHANK>SELECT REPLACE(REPLACE(REPLACE(STATUS, 10, 'TEN'),20, 'TWENTY'),30,'THIRTY') STATUS, COUNT(SP.`S#`) COUNT FROM S, SP WHERE S.`S#` = SP.`S#` GROUP BY STATUS;
+
+
+
+
